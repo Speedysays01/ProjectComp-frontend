@@ -1,0 +1,101 @@
+
+/* Glass container with 95% width and height, centered */
+.glassContainer {
+  position: absolute;          /* Fix to the viewport */
+  top: 50%;                 /* Center vertically */
+  left: 50%;                /* Center horizontally */
+  width: 95vw;               /* 95% of the viewport width */
+  height: 95vh;              /* 95% of the viewport height */
+  transform: translate(-50%, -50%); /* Offset for perfect centering */
+  background: rgba(255, 255, 255, 0.05); /* Glass-like transparent background */
+  backdrop-filter: blur(15px);          /* Blurring the content behind */
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);  /* Soft shadow */
+  border-radius: 15px;         /* Rounded corners */
+  overflow: hidden;            /* Hide overflowing content */
+  z-index: -1;                 /* Behind other content */
+}
+
+
+/* Full grid container */
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200vw; /* Extended width for tilt */
+  height: 200vh; /* Extended height for tilt */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg); /* Center and tilt the grid */
+  overflow: hidden; /* Hide overflow for a clean look */
+}
+
+/* Wrapper for each row */
+.rowWrapper {
+  height: calc(100% / 16); /* Divide height for 16 rows */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Individual row of icons */
+.rowContainer {
+  display: flex;
+  width: calc(200%); /* Double width for seamless scrolling */
+}
+
+.rightToLeft {
+  animation: marqueeRightToLeft 60s linear infinite;
+}
+
+.leftToRight {
+  animation: marqueeLeftToRight 60s linear infinite;
+}
+
+/* Individual icon styling */
+.icon {
+  font-size: 2rem; /* Icon size */
+  color: black;      /* Default icon color */
+  opacity: 0.5;      /* Slight transparency */
+  margin: 0 0.5rem;  /* Spacing between icons */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+  cursor: pointer;   /* Pointer cursor for interactivity */
+}
+
+
+
+/* Right-to-left marquee animation */
+@keyframes marqueeRightToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Left-to-right marquee animation */
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* Mobile */
+@media (max-width:768px){
+  .glassContainer{
+    width: 90vw;
+    max-height: 50vh;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+   margin-right: 2rem;
+   margin-top: -1.2rem;
+  }
+
+}

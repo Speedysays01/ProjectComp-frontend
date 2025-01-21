@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+
+
+.homeContainer{
+    height: 100vh;
+    padding-top: 5rem;
+
+    h1 {
+      font-family: 'Audiowide', sans-serif; /* Use Audiowide font */
+      font-size: 10rem; /* Adjust font size */
+      text-align: center; /* Center align the text */
+      background: linear-gradient(to top, #999999, white); /* Bottom-to-top gradient */
+      background-clip: text;
+      -webkit-background-clip: text; /* Clip the background to the text */
+      -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+    }
+}
+
+
+
+  h2 {
+    font-family: 'Josefin Sans', sans-serif;/* Use Audiowide font */
+    font-size: 3.5rem; /* Adjust font size */
+    text-align: center; /* Center align the text */
+    background: linear-gradient(to right, #00FFEE 30%, #FFAA4F 70%); /* Left-to-right gradient */
+    background-clip: text;
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+    margin-top: -4rem;
+  }
+
+  @media(max-width:768px){
+    .homeContainer{
+      padding-top: 0;
+      margin-top: -10.5rem;
+      overflow-x: hidden;
+
+      h1{
+        font-size: 3.5rem;
+        margin-top: -5rem;
+        margin-bottom: 5rem;
+      }
+
+      h2{
+        font-size: 1.8rem;
+        
+      }
+
+    }
+  }

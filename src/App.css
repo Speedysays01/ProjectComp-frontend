@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background: linear-gradient(to bottom, #002226 0%, #002226 52%, #00899B 100%);
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background-attachment: fixed; /* Keeps the gradient fixed */
+  background-size: cover;
+}
+
+
+/* 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+  background: linear-gradient(to bottom, #002226 0%, #002226 52%, #00899B 100%);
+} */

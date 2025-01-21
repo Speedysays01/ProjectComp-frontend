@@ -1,0 +1,26 @@
+/* Nirmaan.module.css */
+
+/* Full screen container */
+
+  .container{
+    width: max-content;
+    align-self: center;
+    justify-self: center;
+  }
+  /* Styling for the NIRMAAN text */
+  .heading {
+    font-family: 'Audiowide', sans-serif; /* Use Audiowide font */
+    font-size: 10rem; /* Adjust font size */
+    text-align: center; /* Center align the text */
+    background: linear-gradient(to top, #999999, white); /* Bottom-to-top gradient */
+    background-clip: text;
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Hover effect for NIRMAAN text */
+  .heading:hover {
+    background-color: white;
+    color: black;
+  }
+  
