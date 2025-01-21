@@ -10,10 +10,11 @@ const Home = () => {
       {/* <h1>
         NIRMAAN
       </h1> */}
-      <Nirmaan/>
+      <div className= {styles.content}>
+      <Nirmaan className={styles.nirmaan}/>
 
       <h2>Crafting Innovation, Empowering Minds</h2>
-  
+      </div>
     </div>
   );
 };

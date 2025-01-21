@@ -6,6 +6,7 @@
     width: max-content;
     align-self: center;
     justify-self: center;
+    margin-bottom: 3rem;
   }
   /* Styling for the NIRMAAN text */
   .heading {
@@ -23,4 +24,18 @@
     background-color: white;
     color: black;
   }
+
+
+
   
+
+@media(max-width:768px){
+  .heading{
+    font-size: 1.8rem;
+  }
+
+  .container{
+    margin-bottom: 1rem;
+  }
+  
+}

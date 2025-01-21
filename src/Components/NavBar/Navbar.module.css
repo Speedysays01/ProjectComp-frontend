@@ -83,7 +83,10 @@
       right: -100%; /* Initially, off-screen */
       width: 250px;
       height: 100%;
-      background-color: #333;
+      background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Apply background blur */
+  border-radius: 10px; /* Optional: rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
       flex-direction: column;
       align-items: flex-start;
       transition: right 0.3s ease-in-out;
