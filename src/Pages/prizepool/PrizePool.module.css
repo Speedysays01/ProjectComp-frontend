@@ -1,3 +1,166 @@
-.prizePool{
-    height: 100vh;
+.PrizePool {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.PrizePool h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 4rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack the large rectangle and small rectangles container */
+  gap: 2rem;
+}
+
+/* Large rectangle container */
+.largeContainer {
+  display: flex;
+  justify-content: center;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-60vh); /* Start off-screen from the top */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Animate large rectangle when in view */
+.largeRectangleAnimate {
+  opacity: 1;
+  transform: translateY(0); /* Final position */
+}
+
+/* Animate large rectangle on exit */
+.largeRectangleExit {
+  opacity: 0;
+  transform: translateY(-30vh); /* Fade out while moving slightly upward */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Small rectangles container */
+.smallContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 80vw;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(60vh); /* Start off-screen from the bottom */
+  transition: opacity 1s ease, transform 1s ease;
+  margin-top: -20rem;
+}
+
+/* Animate small rectangles when in view */
+.smallRectangleAnimate {
+  opacity: 1;
+  transform: translateY(0); /* Final position */
+}
+
+/* Animate small rectangles on exit */
+.smallRectangleExit {
+  opacity: 0;
+  transform: translateY(30vh); /* Fade out while moving slightly downward */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* General rectangle styling */
+.rectangle {
+  position: relative;
+  border-radius: 3rem;
+  background-color: #ffffff;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Gradient border for rectangles */
+.rectangle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(#00ffee, #ffaa4f);
+  padding: 6px;
+  mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+  -webkit-mask: linear-gradient(white, white) content-box,
+    linear-gradient(white, white);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: 3rem; /* Ensure the gradient has the same border-radius */
+}
+
+/* Large rectangle */
+.largeRectangle {
+  height: 21rem;
+  width: 18rem;
+}
+
+/* Small rectangles */
+.smallRectangle {
+  height: 18rem;
+  width: 17rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .largeRectangle {
+    height: 16rem;
+    width: 14rem;
+  }
+
+  .smallRectangle {
+    height: 14rem;
+    width: 12rem;
+  }
+
+  .PrizePool h3 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .PrizePool {
+    margin-top: -26rem;
+  }
+
+  .container {
+    gap: 1rem;
+  }
+
+  .largeRectangle {
+    height: 11rem;
+    width: 10rem;
+    border-radius: 1rem; /* Reduced border-radius for mobile */
+  }
+
+  .smallRectangle {
+    height: 9rem;
+    width: 8rem;
+    margin-top: 20rem;
+    border-radius: 1rem; /* Reduced border-radius for mobile */
+  }
+
+  /* Make sure the gradient has the same border-radius on mobile */
+  .rectangle::before {
+    border-radius: 1rem; /* Reduced border-radius for mobile */
+  }
+
+  .smallContainer {
+    gap: 0.5rem;
+  }
+
+  .PrizePool h3 {
+    font-size: 2rem;
+  }
 }

@@ -1,0 +1,221 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 70rem; /* Width of the form */
+    height: 31rem; /* Height of the form */
+    justify-self: center;
+    align-self: center;
+    border-radius: 1rem; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance glass effect */
+    margin-top: 3rem;
+    position: absolute;
+    margin-left: 5rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  input, textarea {
+    padding: 10px;
+    width: 60rem;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background: white;
+    color: black;
+    font-weight: bolder;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .select {
+    width: 60rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    color: #333;
+  
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  
+  textarea {
+    margin-bottom: 0.5rem;
+  }
+  
+  .member {
+    align-self: center;
+    margin-left: 3rem;
+  }
+  
+  button {
+    padding: 10px 30px;
+    margin: 5px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+  }
+  
+  button:hover {
+    background-color: rgb(159, 159, 159);
+  }
+  
+  button:disabled {
+    background-color: rgba(204, 204, 204, 0.8);
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  h4 {
+    text-align: center;
+    color: #fff; /* White text for visibility on glass background */
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  
+  .qr-code img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .successMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+  }
+  
+  .homeButton {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, #00FFEE, #FFAA4F);
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .homeButton:hover {
+    background-color: rgb(159, 159, 159);
+  }
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .form {
+      width: 90vw; /* Reduce width for smaller screens */
+      height: auto; /* Allow the height to adjust dynamically */
+      margin-left: 0; /* Center align */
+      padding: 20px; /* Add padding */
+    }
+  
+    input, textarea, .select {
+      width: 80vw; /* Make input fields take full width */
+      font-size: 1rem; /* Keep font size readable on mobile */
+    }
+
+    .select {
+        width: 80vw; /* Make the dropdown 80% of the viewport width */
+        font-size: 1rem; /* Set font size to 1rem */
+        padding: 0.5rem; /* Add some padding for better spacing */
+        border: 1px solid #ccc; /* Add a subtle border */
+        border-radius: 0.5rem; /* Rounded corners */
+        background-color: #ffffff; /* Set background color to white */
+        color: #333; /* Set text color */
+        outline: none; /* Remove focus outline */
+        appearance: none; /* Remove default dropdown styling for consistency */
+        margin-bottom: 1rem; /* Add some space below */
+        box-sizing: border-box; /* Ensure padding doesn’t affect width */
+      }
+      
+      /* Add hover and focus effects */
+      select:hover {
+        border-color: #00ffee; /* Change border color on hover */
+        background-color: #f9f9f9; /* Lighten the background slightly */
+      }
+      
+      select:focus {
+        border-color: #ffaa4f; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(255, 170, 79, 0.5); /* Add subtle focus shadow */
+      }
+      
+  
+    .buttons {
+        width: 80vw; /* Make buttons take full width */
+        justify-content: space-between; /* Center buttons on smaller screens */
+     /* Add extra spacing for clarity */;
+      }
+    
+      .buttons button {
+        max-width: 150px; /* Reduce the button width to fit mobile screens */
+      }
+
+    .add{
+        width: 8rem;
+    }
+  
+    .member {
+      align-self: stretch; /* Ensure alignment across the full width */
+      margin-left: 0; /* Remove margin */
+    }
+  
+    h4 {
+      font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form {
+      width: 80vw; /* Reduce width further for very small screens */
+      align-items: center; /* Center align */
+      margin-left: 1rem;
+      justify-self: center; /* Center horizontally */
+      margin-top: 8rem;
+    }
+  
+    h4 {
+      font-size: 1.2rem; /* Adjust heading size */
+    }
+  
+    input, textarea {
+      font-size: 0.9rem; /* Smaller font size for inputs */
+    }
+   .select{
+    width: 82vw;
+   }
+    button {
+      font-size: 0.9rem; /* Adjust button font size */
+    }
+  }
+  
