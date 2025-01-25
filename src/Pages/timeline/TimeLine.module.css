@@ -4,8 +4,7 @@
     flex-direction: column;
     justify-content: space-around; /* Distributes elements evenly */
     align-items: center;
-    height: 65vh; /* Ensure container height is set to 65vh */
-    max-height: 65vh; /* Prevent overflow */
+    height: 100vh; /* Ensure container height is set to 65vh */
     padding: 2rem;
     width: 100%;
     margin-top: 2rem; /* Adjust margin for better spacing */

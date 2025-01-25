@@ -1,3 +1,154 @@
-.container{
-    height: 100vh;
-}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    padding: 1rem;
+    gap: 1rem; /* Space between the divs */
+    position: relative; /* Ensure it's positioned correctly */
+    z-index: 1; /* Keeps it in the correct stacking order */
+    overflow: hidden; /* Prevent overflow of animations */
+    margin-top: 9rem;
+  
+    h3 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 4rem;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+  
+  /* Styling for the cyan box */
+  .boxCyan {
+    background-color: #0CFAF5; /* Tailwind cyan-400 color */
+    width: 60%; /* 3/4 of the container width */
+    height: 3rem; /* Set fixed height */
+    border-radius: 9999px; /* Fully rounded corners */
+    align-self: flex-start;
+    margin-left: 2rem;
+    opacity: 0;
+  }
+  
+  /* Styling for the orange box */
+  .boxOrange {
+    background-color: #FFAA4F;
+    width: 60%;
+    height: 3rem;
+    border-radius: 9999px;
+    align-self: flex-end;
+    margin-right: 2rem;
+    opacity: 0;
+  }
+  
+  /* Slide-in animation from left */
+  .slideInLeft {
+    animation: slide-in-left 1s forwards;
+    opacity: 1;
+  }
+  
+  /* Slide-in animation from right */
+  .slideInRight {
+    animation: slide-in-right 1s forwards;
+    opacity: 1;
+  }
+  
+  /* Exit animation (slide out) for left-side boxes */
+  .slideOutLeft {
+    animation: slide-out-left 1s forwards;
+    opacity: 0;
+  }
+  
+  /* Exit animation (slide out) for right-side boxes */
+  .slideOutRight {
+    animation: slide-out-right 1s forwards;
+    opacity: 0;
+  }
+  
+  /* Keyframe for sliding in from the left */
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Keyframe for sliding in from the right */
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Keyframe for sliding out from the left */
+  @keyframes slide-out-left {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  /* Keyframe for sliding out from the right */
+  @keyframes slide-out-right {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      gap: 1.5rem;
+      height: auto;
+      padding: 2rem 1rem;
+    }
+  
+    .boxCyan,
+    .boxOrange {
+      width: 60rem; /* Increase width on mobile */
+    }
+  }
+  
+  /* For smaller devices like phones */
+  @media (max-width: 480px) {
+    .container {
+      gap: 1rem;
+      margin-top: 6rem;
+
+      h3{
+        font-size: 2rem;
+      }
+    }
+  
+    .boxCyan,
+    .boxOrange {
+      width: 70%; 
+       margin: 0;  
+       height: 5rem;  
+       border-radius: 1rem;             /* Even more width on very small screens */
+    }
+  
+    h3 {
+      font-size: 1rem;
+    }
+  }
+  
