@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0;
     
     
 
@@ -21,6 +22,23 @@
       -webkit-background-clip: text; /* Clip the background to the text */
       -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
     }
+
+    h3{
+      color: white;
+      align-self: center;
+      justify-self: center;
+      font-size: 2rem;
+      text-wrap: wrap;
+      text-align: center;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-top: -2rem;
+    }
+
+    button{
+      align-self: center;
+      justify-self: center;
+    }
 }
 
 
@@ -33,12 +51,39 @@
     background-clip: text;
     -webkit-background-clip: text; /* Clip the background to the text */
     -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
-    margin-top: -7.5rem;
+    margin-top: -12rem;
   }
  
   .content{
    height: max-content;
-   margin-top: 1rem;
+   margin-top: -2rem;
+   display: flex;
+   flex-direction: column;
+   margin-top: -3rem;
+  }
+
+ 
+
+  .registerButton {
+    font-size: 2rem; /* Default font size for larger screens */
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    width: 17.5rem; /* 280px in rem */
+    height: 4rem; /* 64px in rem */
+    padding: 0.8rem 2rem;
+    background: linear-gradient(to right, #00FFEE, #FFAA4F); /* Horizontal gradient */
+    border: none;
+    border-radius: 3rem;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    align-self: center;
+    justify-self: center;
+  }
+  
+  .registerButton:hover {
+    box-shadow: 0 0 15px 5px rgba(0, 255, 238, 0.8), 
+                0 0 15px 5px rgba(255, 170, 79, 0.8); /* Glow effect with gradient colors */
   }
   @media(max-width:768px){
     .homeContainer{
@@ -46,7 +91,9 @@
       margin-top: -10.5rem;
       overflow-x: hidden;
       
-    
+    .content{
+      margin-top: -1rem;
+    }
 
       h1{
         font-size: 3rem;
@@ -55,9 +102,26 @@
       }
 
       h2{
-        font-size: 1.8rem;
-        margin-top: -2rem;
+        font-size: 1.5rem;
+        margin-top: -3rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
         
+      }
+
+      h3{
+        font-size: 1rem;
+        margin-top: -0.8rem;
+        margin-left: 3rem;
+        margin-right: 3rem;
+      }
+
+      .registerButton{
+        font-size: 1.2rem;
+        font-weight: bolder;
+        width: 12rem;
+        height: 3rem;
+        margin-top: 1rem;
       }
 
     }

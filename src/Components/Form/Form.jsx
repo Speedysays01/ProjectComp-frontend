@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import axios from "axios";
-import styles from "./Form.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import styles from './Form.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import qr from './qr.jpg'
 
 const Form = () => {
   const [formData, setFormData] = useState({
-    projectName: "",
-    category: "",
-    description: "",
-    leaderName: "",
-    leaderDepartment: "",
-    leaderRollNo: "",
-    leaderPhoneNo: "",
-    leaderEmail: "",
-    transactionID: "",
-    members: [{ memberNo: 1, name: "", rollNo: "" }],
+    projectName: '',
+    category: '',
+    description: '',
+    leaderName: '',
+    leaderDepartment: '',
+    leaderRollNo: '',
+    leaderPhoneNo: '',
+    leaderEmail: '',
+    transactionID: '',
+    members: [{ memberNo: 1, name: '', rollNo: '' }],
   });
 
   const [step, setStep] = useState(1);
@@ -46,7 +47,7 @@ const Form = () => {
         ...prevData,
         members: [
           ...prevData.members,
-          { memberNo: prevData.members.length + 1, name: "", rollNo: "" },
+          { memberNo: prevData.members.length + 1, name: '', rollNo: '' },
         ],
       }));
     }
@@ -63,7 +64,7 @@ const Form = () => {
   };
 
   const nextStep = () => {
-    toast.success("Information updated!");
+    toast.success('Information updated!');
     setStep((prevStep) => Math.min(prevStep + 1, 4));
   };
 
@@ -79,17 +80,17 @@ const Form = () => {
 
     try {
       await axios.post(
-        "https://nirmaan-server.onrender.com/api/project/create",
+        'https://nirmaan-server.onrender.com/api/project/create',
         {
           ...formData,
           members: filteredMembers,
         }
       );
-      toast.success("Data submitted successfully!");
+      toast.success('Data submitted successfully!');
       setIsSubmitted(true); // Mark form as submitted
     } catch (error) {
-      toast.error("Error submitting data.");
-      console.error("Error submitting data:", error);
+      toast.error('Error submitting data.');
+      console.error('Error submitting data:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -104,7 +105,7 @@ const Form = () => {
             <input
               type="text"
               name="projectName"
-              placeholder="Project Name"
+              placeholder="Enter Project Name (eg. Smart Home Automation)"
               value={formData.projectName}
               onChange={handleChange}
               required
@@ -117,12 +118,12 @@ const Form = () => {
               required
             >
               <option value="">Select Category</option>
-              <option value="Software">Software</option>
-              <option value="Hardware">Hardware</option>
+              <option value="Software">Software (only code / software)</option>
+              <option value="Hardware">Hardware (only hardware / software+hardware)</option>
             </select>
             <textarea
               name="description"
-              placeholder="Description"
+              placeholder="Brief Project Description"
               value={formData.description}
               onChange={handleChange}
               required
@@ -153,17 +154,17 @@ const Form = () => {
               <option value="IT">IT</option>
               <option value="AIDS">AIDS</option>
               <option value="AIML">AIML</option>
-              <option value="ETC">ETC</option>
+              <option value="E&TC">E&TC</option>
               <option value="ECE">ECE</option>
-              <option value="Electrical">Electrical</option>
-              <option value="Robotics Automation">Robotics Automation</option>
-              <option value="Mechanical">Mechanical</option>
+              <option value="ELE">ELE</option>
+              <option value="R&A">Robotics Automation</option>
+              <option value="Mech">Mech</option>
               <option value="Civil">Civil</option>
             </select>
             <input
               type="text"
               name="leaderRollNo"
-              placeholder="Leader Roll No"
+              placeholder="Leader Roll No (eg. T312004)"
               value={formData.leaderRollNo}
               onChange={handleChange}
               required
@@ -171,7 +172,7 @@ const Form = () => {
             <input
               type="tel"
               name="leaderPhoneNo"
-              placeholder="Leader Phone No"
+              placeholder="Leader Phone No (eg. 0123456789)"
               value={formData.leaderPhoneNo}
               onChange={handleChange}
               required
@@ -179,7 +180,7 @@ const Form = () => {
             <input
               type="email"
               name="leaderEmail"
-              placeholder="Leader Email"
+              placeholder="Leader Email ( you will recieve project updates here )"
               value={formData.leaderEmail}
               onChange={handleChange}
               required
@@ -230,14 +231,27 @@ const Form = () => {
         return (
           <div className={styles.formGroup}>
             <h4>Payment Info</h4>
-            <input
+            <div className={styles.tcontent}>
+            <div className={styles.qr}>
+            <h3>Registration fee per team: 200Rs</h3>
+            <img src={qr} alt="Qr code to pay the fees" />
+            <p>Kindly pay the amount on the given QR and submit your transaction ID </p>
+            </div>
+          
+          <div className={styles.transactionID}>
+          <input
               type="text"
               name="transactionID"
-              placeholder="Transaction ID"
+              placeholder="Enter Transaction ID here"
               value={formData.transactionID}
               onChange={handleChange}
               required
             />
+            <p className={styles.warning}> <span>WARNING:</span>Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.</p>
+          </div>
+          </div>
+
+          
           </div>
         );
       default:
@@ -245,22 +259,38 @@ const Form = () => {
     }
   };
 
+  const ProgressBar = () => {
+    const progress = (step - 1) * (100 / 4); // For 4 steps
+    return (
+      <div className={styles.progressContainer}>
+        <div className={styles.progressBar}>
+          <div
+            className={styles.progressBarFill}
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       {!isSubmitted ? (
         <form className={styles.form} onSubmit={handleSubmit}>
+      
           {renderStepContent()}
           <div className={styles.buttons}>
             <button type="button" onClick={prevStep} disabled={step === 1}>
               Back
             </button>
+            <ProgressBar />
             {step < 4 ? (
               <button type="button" onClick={nextStep}>
                 Next
               </button>
             ) : (
               <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Submit"}
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             )}
           </div>
@@ -274,7 +304,7 @@ const Form = () => {
           </p>
           <button
             onClick={() => {
-              window.location.href = "/"; // Redirect to home page
+              window.location.href = '/'; // Redirect to home page
             }}
             className={styles.homeButton}
           >
