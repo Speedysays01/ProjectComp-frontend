@@ -89,7 +89,7 @@ const Form = () => {
       toast.success('Data submitted successfully!');
       setIsSubmitted(true); // Mark form as submitted
     } catch (error) {
-      toast.error('Error submitting data.');
+      toast.error('Error submitting data.' , error);
       console.error('Error submitting data:', error);
     } finally {
       setIsSubmitting(false);
@@ -177,14 +177,20 @@ const Form = () => {
               onChange={handleChange}
               required
             />
+            {formData.leaderPhoneNo && !/^\d{10}$/.test(formData.leaderPhoneNo) && (
+              <p className={styles.error}>Please enter a valid 10-digit phone number.</p>
+            )}
             <input
               type="email"
               name="leaderEmail"
-              placeholder="Leader Email ( you will recieve project updates here )"
+              placeholder="Leader Email (you will receive project updates here)"
               value={formData.leaderEmail}
               onChange={handleChange}
               required
             />
+            {formData.leaderEmail && !/\S+@\S+\.\S+/.test(formData.leaderEmail) && (
+              <p className={styles.error}>Please enter a valid email address.</p>
+            )}
           </div>
         );
       case 3:
@@ -232,32 +238,32 @@ const Form = () => {
           <div className={styles.formGroup}>
             <h4>Payment Info</h4>
             <div className={styles.tcontent}>
-            <div className={styles.qr}>
-            <h3>Registration fee per team: 200Rs</h3>
-            <img src={qr} alt="Qr code to pay the fees" />
-            <p>Kindly pay the amount on the given QR and submit your transaction ID </p>
+              <div className={styles.qr}>
+                <h3>Registration fee per team: 200Rs</h3>
+                <img src={qr} alt="Qr code to pay the fees" />
+                <p>Kindly pay the amount on the given QR and submit your transaction ID</p>
+              </div>
+              <div className={styles.transactionID}>
+                <input
+                  type="text"
+                  name="transactionID"
+                  placeholder="Enter Transaction ID here"
+                  value={formData.transactionID}
+                  onChange={handleChange}
+                  required
+                />
+                <p className={styles.warning}>
+                  <span>WARNING:</span> Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.
+                </p>
+              </div>
             </div>
-          
-          <div className={styles.transactionID}>
-          <input
-              type="text"
-              name="transactionID"
-              placeholder="Enter Transaction ID here"
-              value={formData.transactionID}
-              onChange={handleChange}
-              required
-            />
-            <p className={styles.warning}> <span>WARNING:</span>Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.</p>
-          </div>
-          </div>
-
-          
           </div>
         );
       default:
         return null;
     }
   };
+  
 
   const ProgressBar = () => {
     const progress = (step - 1) * (100 / 4); // For 4 steps

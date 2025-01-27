@@ -159,12 +159,18 @@
     .warning{
       span{
         color: rgb(199, 0, 0);
-        font-weight:bolder ;
+        font-weight:bolder;
         margin-right: 0.2rem;
       }
     }
   }
 
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
   .qr{
     width: 100%;
     display: flex;

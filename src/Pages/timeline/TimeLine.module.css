@@ -1,117 +1,128 @@
 /* Timeline Container */
 .timelineContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; /* Distributes elements evenly */
-    align-items: center;
-    height: 100vh; /* Ensure container height is set to 65vh */
-    padding: 2rem;
-    width: 100%;
-    margin-top: 2rem; /* Adjust margin for better spacing */
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Smooth container transitions */
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* Distributes elements evenly */
+  align-items: center;
+  /* Ensure container height is set to 65vh */
+  padding: 2rem;
+  width: 100%;
+  margin-top: 2rem; /* Adjust margin for better spacing */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Smooth container transitions */
   
-  /* Title */
+}
+
+/* Title */
+.title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 4rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 2; /* Ensure it's above other elements */
+}
+
+/* Timeline Elements */
+.vertical-timeline-element--work {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 12rem; /* Reduce width */
+  height: calc(65vh / 3); /* Divide 65vh into 3 parts */
+  margin-bottom: 1.5rem; /* Space between elements */
+  transform: translateY(10%); /* Initial position off screen */
+  opacity: 0; /* Initial opacity */
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth animations */
+  position: relative; /* Ensure stacking context for title */
+  z-index: 1; /* Ensure it stays behind the title */
+}
+
+/* Entry Animation */
+.elementEnter {
+  transform: translateY(0); /* Position in view */
+  opacity: 1; /* Visible */
+}
+
+/* Title and Content Styling */
+.vertical-timeline-element-date {
+  font-size: 1.2rem; /* Adjust title size */
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: black;
+  display: block;
+  z-index: 2; /* Ensure the title is always above */
+}
+
+/* Content Styling */
+.vertical-timeline-element-content {
+  font-size: 0.9rem; /* Adjust content size */
+  color: #666;
+}
+
+/* Icon Styling */
+.vertical-timeline-element-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+}
+
+.vertical-timeline-element--date {
+  color: white; /* White color for date text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timelineContainer {
+    gap: 1.5rem;
+     /* Maintain container height */
+  }
+
   .title {
-    font-family: "Orbitron", sans-serif;
-    font-size: 4rem;
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 2rem;
+    font-size: 3rem; /* Adjust title size */
   }
-  
-  /* Timeline Elements */
-  .vertical-timeline-element--work {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 12rem; /* Reduce width */
-    height: calc(65vh / 3); /* Divide 65vh into 3 parts */
-    margin-bottom: 1.5rem; /* Space between elements */
-    transform: translateY(10%); /* Initial position off screen */
-    opacity: 0; /* Initial opacity */
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth animations */
-  }
-  
-  /* Entry Animation */
-  .elementEnter {
-    transform: translateY(0); /* Position in view */
-    opacity: 1; /* Visible */
-  }
-  
-  /* Title and Content Styling */
+
   .vertical-timeline-element-title {
-    font-size: 1.2rem; /* Adjust title size */
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-size: 1rem; /* Reduce title size */
   }
-  
+
   .vertical-timeline-element-content {
-    font-size: 0.9rem; /* Adjust content size */
-    color: #666;
+    font-size: 0.85rem; /* Reduce content size */
   }
-  
-  /* Icon Styling */
-  .vertical-timeline-element-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
+
+  .vertical-timeline-element--work {
+    width: 10rem; /* Reduce element width */
+    height: calc(65vh / 3); /* Maintain height division */
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .timelineContainer {
-      gap: 1.5rem;
-      height: 65vh; /* Maintain container height */
-    }
-  
-    .title {
-      font-size: 3rem; /* Adjust title size */
-    }
-  
-    .vertical-timeline-element-title {
-      font-size: 1rem; /* Reduce title size */
-    }
-  
-    .vertical-timeline-element-content {
-      font-size: 0.85rem; /* Reduce content size */
-    }
-  
-    .vertical-timeline-element--work {
-      width: 10rem; /* Reduce element width */
-      height: calc(65vh / 3); /* Maintain height division */
-    }
+}
+
+/* Extra Small Screen Adjustments */
+@media (max-width: 480px) {
+  .timelineContainer {
+    gap: 1rem;
+    width: 70vw; /* Adjust container width */
+     /* Maintain container height */
+    margin-top: -8rem;
+    align-self: center;
+    justify-self: center;
   }
-  
-  /* Extra Small Screen Adjustments */
-  @media (max-width: 480px) {
-    .timelineContainer {
-      gap: 1rem;
-      width: 70vw; /* Adjust container width */
-      height: 65vh; /* Maintain container height */
-      margin-top: -8rem;
-      align-self: center;
-      justify-self: center;
-    }
-  
-    .title {
-      font-size: 2rem; /* Adjust title size */
-    }
-  
-    .vertical-timeline-element--work {
-      width: 8rem; /* Further reduce width */
-      height: calc(65vh / 3); /* Maintain height split */
-      animation: fadeInUp 0.5s ease-in-out;
-    }
-  
-    .vertical-timeline-element-title {
-      font-size: 0.9rem; /* Adjust title size */
-    }
-  
-    .vertical-timeline-element-content {
-      font-size: 0.8rem; /* Adjust content size */
-    }
+
+  .title {
+    font-size: 2rem; /* Adjust title size */
   }
-  
+
+  .vertical-timeline-element--work {
+    width: 8rem; /* Further reduce width */
+    height: calc(65vh / 3); /* Maintain height split */
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+
+  .vertical-timeline-element-title {
+    font-size: 0.9rem; /* Adjust title size */
+  }
+
+  .vertical-timeline-element-content {
+    font-size: 0.8rem; /* Adjust content size */
+  }
+}

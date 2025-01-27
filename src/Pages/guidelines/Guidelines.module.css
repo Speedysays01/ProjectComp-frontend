@@ -9,7 +9,7 @@
     position: relative; /* Ensure it's positioned correctly */
     z-index: 1; /* Keeps it in the correct stacking order */
     overflow: hidden; /* Prevent overflow of animations */
-    margin-top: 9rem;
+    margin-top: 3rem;
   
     h3 {
       font-family: "Orbitron", sans-serif;
@@ -132,7 +132,7 @@
   @media (max-width: 480px) {
     .container {
       gap: 1rem;
-      margin-top: 6rem;
+      margin-top: -1rem;
 
       h3{
         font-size: 2rem;
