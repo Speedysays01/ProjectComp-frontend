@@ -18,29 +18,41 @@
       text-align: center;
       margin-bottom: 2rem;
     }
+
+    h4{
+      color: black;
+      position: relative;
+      align-self: center;
+      margin-top: -0.8rem;
+      font-weight: 1rem;
+    }
   }
   
   /* Styling for the cyan box */
-  .boxCyan {
-    background-color: #0CFAF5; /* Tailwind cyan-400 color */
-    width: 60%; /* 3/4 of the container width */
-    height: 3rem; /* Set fixed height */
-    border-radius: 9999px; /* Fully rounded corners */
-    align-self: flex-start;
-    margin-left: 2rem;
-    opacity: 0;
-  }
-  
-  /* Styling for the orange box */
-  .boxOrange {
-    background-color: #FFAA4F;
-    width: 60%;
-    height: 3rem;
-    border-radius: 9999px;
-    align-self: flex-end;
-    margin-right: 2rem;
-    opacity: 0;
-  }
+ 
+
+/* Styling for the cyan box */
+.boxCyan {
+  background-color: #0CFAF5; /* Tailwind cyan-400 color */
+  width: 60%; /* 3/4 of the container width */
+  height: 3rem; /* Set fixed height */
+  border-radius: 0 1.5rem 1.5rem 1.5rem; /* Top-left corner not rounded */
+  align-self: flex-start;
+  margin-left: 2rem;
+  opacity: 0;
+  text-align: center;
+}
+
+/* Styling for the orange box */
+.boxOrange {
+  background-color: #FFAA4F;
+  width: 60%;
+  height: 3rem;
+  border-radius: 1.5rem 0 1.5rem 1.5rem; /* Top-right corner not rounded */
+  align-self: flex-end;
+  margin-right: 2rem;
+  opacity: 0;
+}
   
   /* Slide-in animation from left */
   .slideInLeft {
@@ -65,7 +77,16 @@
     animation: slide-out-right 1s forwards;
     opacity: 0;
   }
+
+  .guideline{
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
+
   /* Keyframe for sliding in from the left */
   @keyframes slide-in-left {
     from {
@@ -83,6 +104,7 @@
     from {
       transform: translateX(100%);
       opacity: 0;
+
     }
     to {
       transform: translateX(0);
@@ -126,6 +148,14 @@
     .boxOrange {
       width: 60rem; /* Increase width on mobile */
     }
+
+    .boxOrange{
+      border-radius: 1.5rem 0 1.5rem 1.5rem;
+    }
+
+    .boxCyan{ border-radius: 0 1.5rem 1.5rem 1.5rem;
+    }
+   
   }
   
   /* For smaller devices like phones */
@@ -143,12 +173,24 @@
     .boxOrange {
       width: 70%; 
        margin: 0;  
-       height: 5rem;  
+       height: 4rem;  
        border-radius: 1rem;             /* Even more width on very small screens */
     }
-  
+    .boxCyan{ border-radius: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .boxOrange{
+      border-radius: 1.5rem 0 1.5rem 1.5rem;
+    }
     h3 {
       font-size: 1rem;
+    }
+
+    .guideline{
+      font-size: 1.1rem;
+      align-self: center;
+      justify-self: center;
+      text-align: center;
     }
   }
   

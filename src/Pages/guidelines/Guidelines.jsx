@@ -13,22 +13,34 @@ const Guidelines = () => {
       <h3>GUIDELINES</h3>
       <div
         className={`${styles.boxCyan} ${inView ? styles.slideInLeft : styles.slideOutLeft}`}
-      ></div>
+      >
+        <h4 className={styles.guideline}>Open to all ZCOER stuents.</h4>
+      </div>
       <div
         className={`${styles.boxOrange} ${inView ? styles.slideInRight : styles.slideOutRight}`}
-      ></div>
+      >
+           <h4 className={styles.guideline}>Teams can have a max of 4 members.</h4>
+      </div>
       <div
         className={`${styles.boxCyan} ${inView ? styles.slideInLeft : styles.slideOutLeft}`}
-      ></div>
+      >
+           <h4 className={styles.guideline}>Submission of a functional prototype is mandetory.</h4>
+      </div>
       <div
         className={`${styles.boxOrange} ${inView ? styles.slideInRight : styles.slideOutRight}`}
-      ></div>
+      >
+           <h4 className={styles.guideline}>Teams must adhere to deadlines and instructions.</h4>
+      </div>
       <div
         className={`${styles.boxCyan} ${inView ? styles.slideInLeft : styles.slideOutLeft}`}
-      ></div>
+      >
+           <h4 className={styles.guideline}>Participants must bring their own equipment.</h4>
+      </div>
       <div
         className={`${styles.boxOrange} ${inView ? styles.slideInRight : styles.slideOutRight}`}
-      ></div>
+      >
+           <h4 className={styles.guideline}>Bonus points for addressing real-world challanges.</h4>
+      </div>
     </div>
   );
 };
