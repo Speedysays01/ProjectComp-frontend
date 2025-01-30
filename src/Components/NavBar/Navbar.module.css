@@ -63,10 +63,12 @@
   color: black;
   transition: color 0.3s ease-in-out;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
+
 .navLink:hover {
-  color: #ffaa4f;
+  color: #006d7b;
 }
 
 /* Sidebar open state */
