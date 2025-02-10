@@ -100,12 +100,22 @@
 .largeRectangle {
   height: 21rem;
   width: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+ 
 }
 
 /* Small rectangles */
 .smallRectangle {
   height: 18rem;
   width: 17rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Mobile responsiveness */
@@ -149,6 +159,15 @@
     width: 8rem;
     margin-top: 20rem;
     border-radius: 1rem; /* Reduced border-radius for mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h5{
+      margin-top: 2rem;
+    }
   }
 
   /* Make sure the gradient has the same border-radius on mobile */
@@ -163,4 +182,140 @@
   .PrizePool h3 {
     font-size: 2rem;
   }
+}
+
+
+
+
+/* Styling for h5 inside rectangles */
+h5 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #000000;
+  padding: 1rem;
+  font-weight: bolder;
+  
+}
+
+/* Bold styling for highlighted text */
+.bold {
+  font-weight: 800;
+  color: #dc3e00;
+  font-size: 5rem;
+}
+
+/* Trophy icon styling */
+.trophyIcon {
+  font-size: 5rem;
+  color: rgb(223, 190, 0);
+  margin-bottom: -3rem;
+  margin-top: 1.5rem;
+}
+
+/* Adjustments for the text inside large rectangle */
+.pool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Adjustments for text inside small rectangles */
+.small {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.light{
+  color: gray;
+}
+
+.certificate{
+  font-weight: bolder;
+  font-size: 2rem;
+  margin-top: 2rem;
+  align-self: center;
+  padding-top: 3rem;
+  justify-self: center;
+}
+
+
+/* Styling for h5 inside rectangles */
+h5 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #000000;
+  padding: 1rem;
+  font-weight: bolder;
+}
+
+/* Bold styling for highlighted text */
+.bold {
+  font-weight: 800;
+  color: #dc3e00;
+  font-size: 5rem;
+}
+
+/* Adjustments for text inside large rectangle */
+.pool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Adjustments for text inside small rectangles */
+.small {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  h5 {
+    font-size: 1.2rem; /* Slightly smaller for tablets */
+    padding: 0.8rem;
+  }
+
+  .bold {
+    font-size: 4rem; /* Reduce size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  h5 {
+    font-size: 0.8rem; /* Smaller text for mobile */
+    margin-top: -3;
+    margin-bottom: -1rem;
+  }
+
+  .bold {
+    font-size: 2rem; /* Reduce size further for mobile */
+  }
+
+  .light{
+    font-size: 0.5rem;
+  
+  }
+
+  .trophyIcon{
+    font-size: 2rem;
+    margin-top: -0.5rem
+  }
+
+  .certificate{
+    font-size: 1rem;
+    margin-top: -1rem
+  }
+
+  .small{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+ 
 }

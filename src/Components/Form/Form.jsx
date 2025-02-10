@@ -73,11 +73,14 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
+    // Show success message immediately
+    setIsSubmitted(true); // Trigger the success pop-up
+  
     const filteredMembers = formData.members.filter(
       (member) => member.name && member.rollNo
     );
-
+  
     try {
       await axios.post(
         'https://nirmaan-server.onrender.com/api/project/create',
@@ -87,14 +90,14 @@ const Form = () => {
         }
       );
       toast.success('Data submitted successfully!');
-      setIsSubmitted(true); // Mark form as submitted
     } catch (error) {
-      toast.error('Error submitting data.' , error);
+      toast.error('Error submitting data.');
       console.error('Error submitting data:', error);
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   const renderStepContent = () => {
     switch (step) {

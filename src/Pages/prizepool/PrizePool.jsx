@@ -1,6 +1,7 @@
 import React from "react";
 import { useInView } from "react-intersection-observer"; // Import the hook
 import styles from "./PrizePool.module.css";
+import { FaTrophy } from "react-icons/fa";
 
 const PrizePool = () => {
   const { ref: containerRef, inView } = useInView({
@@ -21,7 +22,12 @@ const PrizePool = () => {
             inView ? styles.largeRectangleAnimate : styles.largeRectangleExit
           }`}
         >
-          <div className={styles.rectangle + " " + styles.largeRectangle}></div>
+          <div className={styles.rectangle + " " + styles.largeRectangle}>
+          <FaTrophy className={styles.trophyIcon} />
+    <h5 className={styles.pool}>
+      <span className={styles.light}>upto</span> <span className={styles.bold}>20K</span> in cash prizes
+    </h5>
+          </div>
         </div>
 
         {/* Small rectangles container */}
@@ -30,8 +36,12 @@ const PrizePool = () => {
             inView ? styles.smallRectangleAnimate : styles.smallRectangleExit
           }`}
         >
-          <div className={styles.rectangle + " " + styles.smallRectangle}></div>
-          <div className={styles.rectangle + " " + styles.smallRectangle}></div>
+          <div className={styles.rectangle + " " + styles.smallRectangle}>
+            <h5 className={styles.small}> <span className={styles.certificate}>Participation Certificates</span> <br/> for everyone! </h5>
+          </div>
+          <div className={styles.rectangle + " " + styles.smallRectangle}>
+          <h5 className={styles.small}> <span className={styles.certificate}> Merit Certificates</span> <br/> for top 50 teams </h5>
+          </div>
         </div>
       </div>
     </div>
