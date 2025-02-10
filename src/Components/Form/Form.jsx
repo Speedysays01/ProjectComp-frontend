@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './Form.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import qr from './qr.jpg'
+import qr from './qrIDBI.jpg'
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -244,7 +244,7 @@ const Form = () => {
               <div className={styles.qr}>
                 <h3>Registration fee per team: 200Rs</h3>
                 <img src={qr} alt="Qr code to pay the fees" />
-                <p>Kindly pay the amount on the given QR and submit your transaction ID</p>
+                <p>Kindly pay the amount on the given QR or number 9326004793 and submit your transaction ID</p>
               </div>
               <div className={styles.transactionID}>
                 <input

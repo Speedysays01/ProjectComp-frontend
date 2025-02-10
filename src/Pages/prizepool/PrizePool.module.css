@@ -205,6 +205,12 @@ h5 {
   font-size: 5rem;
 }
 
+.small{
+  font-size: 1rem;
+  margin-bottom: -1rem;
+}
+
+
 /* Trophy icon styling */
 .trophyIcon {
   font-size: 5rem;
@@ -226,6 +232,7 @@ h5 {
 .small {
   font-size: 1.2rem;
   font-weight: 600;
+  margin-bottom: -2rem;
 }
 
 .light{
@@ -272,6 +279,7 @@ h5 {
 .small {
   font-size: 1.2rem;
   font-weight: 600;
+  margin-bottom: -2rem;
 }
 
 /* Mobile responsiveness */
@@ -283,6 +291,10 @@ h5 {
 
   .bold {
     font-size: 4rem; /* Reduce size for tablets */
+  }
+
+  .small{
+    margin-bottom: -2rem;
   }
 }
 
