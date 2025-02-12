@@ -90,6 +90,7 @@ const Form = () => {
         }
       );
       toast.success('Data submitted successfully!');
+      console.log(formData)
     } catch (error) {
       toast.error('Error submitting data.');
       console.error('Error submitting data:', error);
@@ -284,43 +285,62 @@ const Form = () => {
 
   return (
     <>
-      {!isSubmitted ? (
-        <form className={styles.form} onSubmit={handleSubmit}>
-      
-          {renderStepContent()}
-          <div className={styles.buttons}>
-            <button type="button" onClick={prevStep} disabled={step === 1}>
-              Back
-            </button>
-            <ProgressBar />
-            {step < 4 ? (
-              <button type="button" onClick={nextStep}>
-                Next
-              </button>
-            ) : (
-              <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            )}
-          </div>
-        </form>
+     {isSubmitted ? (
+  <div className={styles.successMessage}>
+    <h4>Registration Successful!</h4>
+    <p>Your project has been registered successfully. Below are the details you provided:</p>
+    <div className={styles.summary}>
+      <h5>Project Info:</h5>
+      <p><strong>Name:</strong> {formData.projectName}</p>
+      <p><strong>Category:</strong> {formData.category}</p>
+      <p><strong>Description:</strong> {formData.description}</p>
+
+      <h5>Leader Info:</h5>
+      <p><strong>Name:</strong> {formData.leaderName}</p>
+      <p><strong>Department:</strong> {formData.leaderDepartment}</p>
+      <p><strong>Roll No:</strong> {formData.leaderRollNo}</p>
+      <p><strong>Phone No:</strong> {formData.leaderPhoneNo}</p>
+      <p><strong>Email:</strong> {formData.leaderEmail}</p>
+
+      <h5>Team Members:</h5>
+      {formData.members.map((member, index) => (
+        <p key={index}><strong>Member {index + 1}:</strong> {member.name} ({member.rollNo})</p>
+      ))}
+
+      <h5>Payment Info:</h5>
+      <p><strong>Transaction ID:</strong> {formData.transactionID}</p>
+    </div>
+
+    <button
+      onClick={() => {
+        window.location.href = '/';
+      }}
+      className={styles.homeButton}
+    >
+      Back to Home
+    </button>
+  </div>
+) : (
+  <form className={styles.form} onSubmit={handleSubmit}>
+    {renderStepContent()}
+    <div className={styles.buttons}>
+      <button type="button" onClick={prevStep} disabled={step === 1}>
+        Back
+      </button>
+      <ProgressBar />
+      {step < 4 ? (
+        <button type="button" onClick={nextStep}>
+          Next
+        </button>
       ) : (
-        <div className={styles.successMessage}>
-          <h4>Registration Successful!</h4>
-          <p>
-            Your project has been registered successfully. You will receive an
-            email on the leader's email address shortly.
-          </p>
-          <button
-            onClick={() => {
-              window.location.href = '/'; // Redirect to home page
-            }}
-            className={styles.homeButton}
-          >
-            Back to Home
-          </button>
-        </div>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
       )}
+    </div>
+  </form>
+)}
+
       <ToastContainer />
     </>
   );
