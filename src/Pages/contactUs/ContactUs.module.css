@@ -60,6 +60,7 @@
         font-family: josefin sans;
         font-size: 2rem;
         color: white;
+      
       }
    
       .description{
@@ -99,6 +100,9 @@
 
 
   @media(max-width: 768px){
+    .contactContainer{
+      margin-top: -2rem;
+    }
     .contactCard{
         padding: 1rem
         ;
@@ -121,6 +125,7 @@
         font-family: josefin sans;
         font-size: 1.5rem;
         color: white;
+        margin-bottom: 0.5rem;
       }
 
       .name{

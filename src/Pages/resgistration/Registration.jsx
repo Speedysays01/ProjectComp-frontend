@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import styles from './Registration.module.css';
 
+import merit from './merit.png'
+import participation from './participation.png'
+
 const Registration = () => {
   const navigate = useNavigate(); // Hook for programmatic navigation
 
@@ -17,6 +20,17 @@ const Registration = () => {
         <button className={styles.registerButton} onClick={handleRegisterClick}>
           Register Now
         </button>
+
+        <div className={styles.certificates}>
+          <div className={styles.merit}>
+            <img src={merit} alt="Merit certeficate" />
+            <h5>Merit certificate</h5>
+          </div>
+          <div className={styles.participation}>
+            <img src={participation} alt="Merit certeficate" />
+            <h5>Participation certificate</h5>
+          </div>
+        </div>
       </div>
     </div>
   );
