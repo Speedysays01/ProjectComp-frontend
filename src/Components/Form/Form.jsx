@@ -3,25 +3,25 @@ import axios from 'axios';
 import styles from './Form.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import qr from './qrIDBI.jpg'
+import qr from './qrIDBI.jpg';
 
 const Form = () => {
   const [formData, setFormData] = useState({
-    projectName: '',
-    category: '',
-    description: '',
     leaderName: '',
     leaderDepartment: '',
     leaderRollNo: '',
     leaderPhoneNo: '',
     leaderEmail: '',
     transactionID: '',
-    members: [{ memberNo: 1, name: '', rollNo: '' }],
+    member1: '',
+    member2: '',
+    member3: ''
   });
 
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track if form is submitted
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,110 +31,35 @@ const Form = () => {
     }));
   };
 
-  const handleMemberChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedMembers = [...formData.members];
-    updatedMembers[index][name] = value;
-    setFormData((prevData) => ({
-      ...prevData,
-      members: updatedMembers,
-    }));
-  };
-
-  const addMember = () => {
-    if (formData.members.length < 3) {
-      setFormData((prevData) => ({
-        ...prevData,
-        members: [
-          ...prevData.members,
-          { memberNo: prevData.members.length + 1, name: '', rollNo: '' },
-        ],
-      }));
-    }
-  };
-
-  const removeLastMember = () => {
-    if (formData.members.length > 1) {
-      const updatedMembers = formData.members.slice(0, -1);
-      setFormData((prevData) => ({
-        ...prevData,
-        members: updatedMembers,
-      }));
-    }
-  };
-
   const nextStep = () => {
     toast.success('Information updated!');
-    setStep((prevStep) => Math.min(prevStep + 1, 4));
+    setStep((prevStep) => Math.min(prevStep + 1, 3));
   };
 
   const prevStep = () => setStep((prevStep) => Math.max(prevStep - 1, 1));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     setIsSubmitting(true);
-  
-    // Show success message immediately
-    setIsSubmitted(true); // Trigger the success pop-up
-  
-    const filteredMembers = formData.members.filter(
-      (member) => member.name && member.rollNo
-    );
-  
+    setIsPopupOpen(true); // Show popup while submitting
+
     try {
-      await axios.post(
-        'https://nirmaan-server.onrender.com/api/project/create',
-        {
-          ...formData,
-          members: filteredMembers,
-        }
-      );
+      await axios.post('https://nirmaan-server.onrender.com/api/project/create', { ...formData });
       toast.success('Data submitted successfully!');
-      console.log(formData)
+      setIsSubmitted(true);
     } catch (error) {
       toast.error('Error submitting data.');
       console.error('Error submitting data:', error);
     } finally {
       setIsSubmitting(false);
+      setIsPopupOpen(false); // Hide popup after submission
     }
   };
-  
 
   const renderStepContent = () => {
     switch (step) {
       case 1:
-        return (
-          <div className={styles.formGroup}>
-            <h4 className={styles.title}>Project Info</h4>
-            <input
-              type="text"
-              name="projectName"
-              placeholder="Enter Project Name (eg. Smart Home Automation)"
-              value={formData.projectName}
-              onChange={handleChange}
-              required
-            />
-            <select
-              className={styles.select}
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Category</option>
-              <option value="Software">Software (only code / software)</option>
-              <option value="Hardware">Hardware (only hardware / software+hardware)</option>
-            </select>
-            <textarea
-              name="description"
-              placeholder="Brief Project Description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        );
-      case 2:
         return (
           <div className={styles.formGroup}>
             <h4>Leader Info</h4>
@@ -197,149 +122,85 @@ const Form = () => {
             )}
           </div>
         );
-      case 3:
+
+      case 2:
         return (
           <div className={styles.formGroup}>
             <h4>Add Members</h4>
-            {formData.members.map((member, index) => (
-              <div key={index} className={styles.member}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder={`Member ${index + 1} Name`}
-                  value={member.name}
-                  onChange={(e) => handleMemberChange(index, e)}
-                />
-                <input
-                  type="text"
-                  name="rollNo"
-                  placeholder={`Member ${index + 1} Roll No`}
-                  value={member.rollNo}
-                  onChange={(e) => handleMemberChange(index, e)}
-                />
-              </div>
-            ))}
-            <div className={styles.memberButtons}>
-              <button
-                type="button"
-                onClick={addMember}
-                disabled={formData.members.length >= 3}
-              >
-                Add Member
-              </button>
-              <button
-                type="button"
-                onClick={removeLastMember}
-                disabled={formData.members.length <= 1}
-              >
-                Remove Member
-              </button>
-            </div>
+            <input type="text" name="member1" placeholder="Member 1" value={formData.member1} onChange={handleChange} />
+            <input type="text" name="member2" placeholder="Member 2" value={formData.member2} onChange={handleChange} />
+            <input type="text" name="member3" placeholder="Member 3" value={formData.member3} onChange={handleChange} />
           </div>
         );
-      case 4:
-        return (
-          <div className={styles.formGroup}>
-            <h4>Payment Info</h4>
-            <div className={styles.tcontent}>
-              <div className={styles.qr}>
-                <h3>Registration fee per team: 200Rs</h3>
-                <img src={qr} alt="Qr code to pay the fees" />
-                <p>Kindly pay the amount on the given QR or number 9326004793 and submit your transaction ID</p>
-              </div>
-              <div className={styles.transactionID}>
-                <input
-                  type="text"
-                  name="transactionID"
-                  placeholder="Enter Transaction ID here"
-                  value={formData.transactionID}
-                  onChange={handleChange}
-                  required
-                />
-                <p className={styles.warning}>
-                  <span>WARNING:</span> Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.
-                </p>
+
+        case 3:
+          return (
+            <div className={styles.formGroup}>
+              <h4>Payment Info</h4>
+              <div className={styles.tcontent}>
+                <div className={styles.qr}>
+                  <h3>Registration fee per team: 200Rs</h3>
+                  <img src={qr} alt="QR code to pay the fees" />
+                  <p>Kindly pay the amount on the given QR or number 9326004793 and submit your transaction ID</p>
+                </div>
+                <div className={styles.transactionID}>
+                  <input
+                    type="text"
+                    name="transactionID"
+                    placeholder="Enter Transaction ID here"
+                    value={formData.transactionID}
+                    onChange={handleChange}
+                    required
+                  />
+                  <p className={styles.warning}>
+                    <span>WARNING:</span> Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        );
+          );
+      
+
       default:
         return null;
     }
   };
-  
-
-  const ProgressBar = () => {
-    const progress = (step - 1) * (100 / 4); // For 4 steps
-    return (
-      <div className={styles.progressContainer}>
-        <div className={styles.progressBar}>
-          <div
-            className={styles.progressBarFill}
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
-     {isSubmitted ? (
-  <div className={styles.successMessage}>
-    <h4>Registration Successful!</h4>
-    <p>Your project has been registered successfully. Below are the details you provided:</p>
-    <div className={styles.summary}>
-      <h5>Project Info:</h5>
-      <p><strong>Name:</strong> {formData.projectName}</p>
-      <p><strong>Category:</strong> {formData.category}</p>
-      <p><strong>Description:</strong> {formData.description}</p>
-
-      <h5>Leader Info:</h5>
-      <p><strong>Name:</strong> {formData.leaderName}</p>
-      <p><strong>Department:</strong> {formData.leaderDepartment}</p>
-      <p><strong>Roll No:</strong> {formData.leaderRollNo}</p>
-      <p><strong>Phone No:</strong> {formData.leaderPhoneNo}</p>
-      <p><strong>Email:</strong> {formData.leaderEmail}</p>
-
-      <h5>Team Members:</h5>
-      {formData.members.map((member, index) => (
-        <p key={index}><strong>Member {index + 1}:</strong> {member.name} ({member.rollNo})</p>
-      ))}
-
-      <h5>Payment Info:</h5>
-      <p><strong>Transaction ID:</strong> {formData.transactionID}</p>
-    </div>
-
-    <button
-      onClick={() => {
-        window.location.href = '/';
-      }}
-      className={styles.homeButton}
-    >
-      Back to Home
-    </button>
-  </div>
-) : (
-  <form className={styles.form} onSubmit={handleSubmit}>
-    {renderStepContent()}
-    <div className={styles.buttons}>
-      <button type="button" onClick={prevStep} disabled={step === 1}>
-        Back
-      </button>
-      <ProgressBar />
-      {step < 4 ? (
-        <button type="button" onClick={nextStep}>
-          Next
-        </button>
-      ) : (
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
+      {isPopupOpen && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupContent}>
+            <h3>Processing Registration</h3>
+            <p>Please wait while we confirm your registration...</p>
+            <div className={styles.loader}></div>
+          </div>
+        </div>
       )}
-    </div>
-  </form>
-)}
+
+      {isSubmitted ? (
+        <div className={styles.successMessage}>
+          <h4>Registration Successful!</h4>
+          <p>Your registration has been successfully completed.</p>
+          <button onClick={() => window.location.href = '/'} className={styles.homeButton}>
+            Back to Home
+          </button>
+        </div>
+      ) : (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {renderStepContent()}
+          <div className={styles.buttons}>
+            <button type="button" onClick={prevStep} disabled={step === 1}>Back</button>
+            {step < 3 ? (
+              <button type="button" onClick={nextStep}>Next</button>
+            ) : (
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            )}
+          </div>
+        </form>
+      )}
 
       <ToastContainer />
     </>
