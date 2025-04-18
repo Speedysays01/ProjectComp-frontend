@@ -8,11 +8,11 @@ import qr from './qrIDBI.jpg';
 const Form = () => {
   const [formData, setFormData] = useState({
     leaderName: '',
-    leaderDepartment: '',
+    leaderYear: '',
     leaderRollNo: '',
     leaderPhoneNo: '',
     leaderEmail: '',
-    transactionID: '',
+    category: '',
     member1: '',
     member2: '',
     member3: ''
@@ -71,25 +71,6 @@ const Form = () => {
               onChange={handleChange}
               required
             />
-            <select
-              className={styles.select}
-              name="leaderDepartment"
-              value={formData.leaderDepartment}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Department</option>
-              <option value="CSE">CSE</option>
-              <option value="IT">IT</option>
-              <option value="AIDS">AIDS</option>
-              <option value="AIML">AIML</option>
-              <option value="E&TC">E&TC</option>
-              <option value="ECE">ECE</option>
-              <option value="ELE">ELE</option>
-              <option value="R&A">Robotics Automation</option>
-              <option value="Mech">Mech</option>
-              <option value="Civil">Civil</option>
-            </select>
             <input
               type="text"
               name="leaderRollNo"
@@ -136,30 +117,35 @@ const Form = () => {
         case 3:
           return (
             <div className={styles.formGroup}>
-              <h4>Payment Info</h4>
-              <div className={styles.tcontent}>
-                <div className={styles.qr}>
-                  <h3>Registration fee per team: 200Rs</h3>
-                  <img src={qr} alt="QR code to pay the fees" />
-                  <p>Kindly pay the amount on the given QR or number 9326004793 and submit your transaction ID</p>
-                </div>
-                <div className={styles.transactionID}>
-                  <input
-                    type="text"
-                    name="transactionID"
-                    placeholder="Enter Transaction ID here"
-                    value={formData.transactionID}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p className={styles.warning}>
-                    <span>WARNING:</span> Any team found providing invalid or fake transaction IDs will have their team lead reported to higher authorities and the entire team will be blacklisted from all future events organized by the E&TC department.
-                  </p>
-                </div>
-              </div>
+              <h4>Leader Year</h4>
+              <select
+                className={styles.select}
+                name="leaderYear"
+                value={formData.leaderYear}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Year</option>
+                <option value="SE">SE</option>
+                <option value="TE">TE</option>
+              </select>
+        
+              <h4>Project Category</h4>
+              <select
+                className={styles.select}
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Project category</option>
+                <option value="software">Software (only code)</option>
+                <option value="hardware">Hardware (Software + hardware or only hardware)</option>
+              </select>
             </div>
           );
-      
+        
+        
 
       default:
         return null;
