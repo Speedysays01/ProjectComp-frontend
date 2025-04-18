@@ -15,7 +15,10 @@ const Form = () => {
     category: '',
     member1: '',
     member2: '',
-    member3: ''
+    member3: '',
+     member4: '',
+     member5: ''
+
   });
 
   const [step, setStep] = useState(1);
@@ -110,7 +113,10 @@ const Form = () => {
             <h4>Add Members</h4>
             <input type="text" name="member1" placeholder="Member 1" value={formData.member1} onChange={handleChange} />
             <input type="text" name="member2" placeholder="Member 2" value={formData.member2} onChange={handleChange} />
+            
             <input type="text" name="member3" placeholder="Member 3" value={formData.member3} onChange={handleChange} />
+            <input type="text" name="member4" placeholder="Member 4" value={formData.member4} onChange={handleChange} />
+            <input type="text" name="member3" placeholder="Member 5" value={formData.member5} onChange={handleChange} />
           </div>
         );
 
